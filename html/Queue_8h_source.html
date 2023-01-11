@@ -69,35 +69,38 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;pthread.h&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="keyword">namespace </span>qq{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classqq_1_1Queue.html">    9</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classqq_1_1Queue.html">Queue</a>{</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;            <a class="code" href="classqq_1_1Queue.html">Queue&lt;T&gt;</a>(<span class="keywordtype">int</span> size_elem);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classqq_1_1Queue.html#a58077b7d9eb8814e3f011b393190b909">Push</a>( T element);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;            T <a class="code" href="classqq_1_1Queue.html#a5672d16e36b10baf66bcd03796415c02">Pop</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classqq_1_1Queue.html#a54bc153bf9cd8a3e0ab9f52461198603">   34</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classqq_1_1Queue.html#a54bc153bf9cd8a3e0ab9f52461198603">Size</a>(){<span class="keywordflow">return</span> size;}</div>
-<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classqq_1_1Queue.html#a8c9685e3d1c451e6be8201de010025ab">   40</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classqq_1_1Queue.html#a8c9685e3d1c451e6be8201de010025ab">Count</a>(){<span class="keywordflow">return</span> tail;}</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classqq_1_1Queue.html#ad7760991580866815c742641a39c6eb8">printQueue</a>();</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;                <span class="keywordtype">int</span> head;       <span class="comment">// idx where the first element is stored </span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">int</span> tail;       <span class="comment">// idx where the last element is stored </span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordtype">int</span> size;       <span class="comment">// total capacity of the queue </span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                T *queue;       <span class="comment">// array where T values will be stored </span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                pthread_mutex_t mutex; <span class="comment">// mutex that handles the access of the queue</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span>                <span class="keywordtype">bool</span> isFull();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;                <span class="keywordtype">bool</span> isEmpty(){<span class="keywordflow">return</span>(tail==0)? <span class="keyword">true</span>: <span class="keyword">false</span>;}</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    };    </div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;}</div>
-<div class="ttc" id="aclassqq_1_1Queue_html"><div class="ttname"><a href="classqq_1_1Queue.html">qq::Queue</a></div><div class="ttdef"><b>Definition:</b> Queue.h:9</div></div>
-<div class="ttc" id="aclassqq_1_1Queue_html_a54bc153bf9cd8a3e0ab9f52461198603"><div class="ttname"><a href="classqq_1_1Queue.html#a54bc153bf9cd8a3e0ab9f52461198603">qq::Queue::Size</a></div><div class="ttdeci">int Size()</div><div class="ttdoc">Max number of elements.</div><div class="ttdef"><b>Definition:</b> Queue.h:34</div></div>
-<div class="ttc" id="aclassqq_1_1Queue_html_a5672d16e36b10baf66bcd03796415c02"><div class="ttname"><a href="classqq_1_1Queue.html#a5672d16e36b10baf66bcd03796415c02">qq::Queue::Pop</a></div><div class="ttdeci">T Pop()</div><div class="ttdoc">Removes and returns the last element of the queue.</div><div class="ttdef"><b>Definition:</b> Queue.cpp:35</div></div>
-<div class="ttc" id="aclassqq_1_1Queue_html_a58077b7d9eb8814e3f011b393190b909"><div class="ttname"><a href="classqq_1_1Queue.html#a58077b7d9eb8814e3f011b393190b909">qq::Queue::Push</a></div><div class="ttdeci">void Push(T element)</div><div class="ttdoc">Increments an element to the end of the queue.</div><div class="ttdef"><b>Definition:</b> Queue.cpp:59</div></div>
-<div class="ttc" id="aclassqq_1_1Queue_html_a8c9685e3d1c451e6be8201de010025ab"><div class="ttname"><a href="classqq_1_1Queue.html#a8c9685e3d1c451e6be8201de010025ab">qq::Queue::Count</a></div><div class="ttdeci">int Count()</div><div class="ttdoc">amount of elements stored now</div><div class="ttdef"><b>Definition:</b> Queue.h:40</div></div>
-<div class="ttc" id="aclassqq_1_1Queue_html_ad7760991580866815c742641a39c6eb8"><div class="ttname"><a href="classqq_1_1Queue.html#ad7760991580866815c742641a39c6eb8">qq::Queue::printQueue</a></div><div class="ttdeci">void printQueue()</div><div class="ttdoc">Print the actual state of the queue!</div><div class="ttdef"><b>Definition:</b> Queue.cpp:71</div></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;condition_variable&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span>qq{</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> T&gt;</div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="classqq_1_1Queue.html">   10</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classqq_1_1Queue.html">Queue</a>{</div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <a class="code" href="classqq_1_1Queue.html">Queue&lt;T&gt;</a>(<span class="keywordtype">int</span> size_elem);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classqq_1_1Queue.html#a58077b7d9eb8814e3f011b393190b909">Push</a>( T element);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;            T <a class="code" href="classqq_1_1Queue.html#a5672d16e36b10baf66bcd03796415c02">Pop</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classqq_1_1Queue.html#a54bc153bf9cd8a3e0ab9f52461198603">   35</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classqq_1_1Queue.html#a54bc153bf9cd8a3e0ab9f52461198603">Size</a>(){<span class="keywordflow">return</span> size;}</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classqq_1_1Queue.html#a8c9685e3d1c451e6be8201de010025ab">   41</a></span>&#160;            <span class="keywordtype">int</span> <a class="code" href="classqq_1_1Queue.html#a8c9685e3d1c451e6be8201de010025ab">Count</a>(){<span class="keywordflow">return</span> tail;}</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keywordtype">void</span> <a class="code" href="classqq_1_1Queue.html#ad7760991580866815c742641a39c6eb8">printQueue</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;                <span class="keywordtype">int</span> head;       <span class="comment">// idx where the first element is stored </span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordtype">int</span> tail;       <span class="comment">// idx where the last element is stored </span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;                <span class="keywordtype">int</span> size;       <span class="comment">// total capacity of the queue </span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                T *queue;       <span class="comment">// array where T values will be stored </span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <span class="comment">//pthread_mutex_t mutex; // mutex that handles the access of the queue</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                std::mutex m; <span class="comment">// mutex that handles the access of the queue</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                std::condition_variable condVar;</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;                <span class="keywordtype">bool</span> isFull();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;                <span class="keywordtype">bool</span> isEmpty(){<span class="keywordflow">return</span>(tail==0)? <span class="keyword">true</span>: <span class="keyword">false</span>;}</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    };    </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;}</div>
+<div class="ttc" id="aclassqq_1_1Queue_html"><div class="ttname"><a href="classqq_1_1Queue.html">qq::Queue</a></div><div class="ttdef"><b>Definition:</b> Queue.h:10</div></div>
+<div class="ttc" id="aclassqq_1_1Queue_html_a54bc153bf9cd8a3e0ab9f52461198603"><div class="ttname"><a href="classqq_1_1Queue.html#a54bc153bf9cd8a3e0ab9f52461198603">qq::Queue::Size</a></div><div class="ttdeci">int Size()</div><div class="ttdoc">Max number of elements.</div><div class="ttdef"><b>Definition:</b> Queue.h:35</div></div>
+<div class="ttc" id="aclassqq_1_1Queue_html_a5672d16e36b10baf66bcd03796415c02"><div class="ttname"><a href="classqq_1_1Queue.html#a5672d16e36b10baf66bcd03796415c02">qq::Queue::Pop</a></div><div class="ttdeci">T Pop()</div><div class="ttdoc">Removes and returns the last element of the queue.</div><div class="ttdef"><b>Definition:</b> Queue.cpp:34</div></div>
+<div class="ttc" id="aclassqq_1_1Queue_html_a58077b7d9eb8814e3f011b393190b909"><div class="ttname"><a href="classqq_1_1Queue.html#a58077b7d9eb8814e3f011b393190b909">qq::Queue::Push</a></div><div class="ttdeci">void Push(T element)</div><div class="ttdoc">Increments an element to the end of the queue.</div><div class="ttdef"><b>Definition:</b> Queue.cpp:55</div></div>
+<div class="ttc" id="aclassqq_1_1Queue_html_a8c9685e3d1c451e6be8201de010025ab"><div class="ttname"><a href="classqq_1_1Queue.html#a8c9685e3d1c451e6be8201de010025ab">qq::Queue::Count</a></div><div class="ttdeci">int Count()</div><div class="ttdoc">amount of elements stored now</div><div class="ttdef"><b>Definition:</b> Queue.h:41</div></div>
+<div class="ttc" id="aclassqq_1_1Queue_html_ad7760991580866815c742641a39c6eb8"><div class="ttname"><a href="classqq_1_1Queue.html#ad7760991580866815c742641a39c6eb8">qq::Queue::printQueue</a></div><div class="ttdeci">void printQueue()</div><div class="ttdoc">Print the actual state of the queue!</div><div class="ttdef"><b>Definition:</b> Queue.cpp:69</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

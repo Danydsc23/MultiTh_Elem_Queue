@@ -2,6 +2,7 @@
 
 #include <pthread.h>
 #include <stdlib.h>
+#include <condition_variable>
 
 namespace qq{
 
@@ -49,7 +50,9 @@ namespace qq{
                 int tail;       // idx where the last element is stored 
                 int size;       // total capacity of the queue 
                 T *queue;       // array where T values will be stored 
-                pthread_mutex_t mutex; // mutex that handles the access of the queue
+                //pthread_mutex_t mutex; // mutex that handles the access of the queue
+                std::mutex m; // mutex that handles the access of the queue
+                std::condition_variable condVar;
                 /**
                 * @brief check if queue is full 
                 * 

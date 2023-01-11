@@ -13,6 +13,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <pthread.h>
+#include <mutex>
 #include <thread>
 #include <condition_variable>
 #include <stdlib.h>
@@ -23,49 +24,46 @@ using namespace std;
 using namespace qq;
 
 template<class T>
-Queue<T>::Queue (int size_elem){
-    
+Queue<T>::Queue (int size_elem){   
     size = size_elem;
     queue = new T[size_elem];
     head=tail=0;
-    pthread_mutex_init(&mutex,0);
 }
 
 template<class T>
 T Queue<T>::Pop(){
-    // wait until queue is not empty
-    int count_time=0;
-    while(isEmpty())
-    {
-        // cout << "Queue is empty, waiting...\n";
-        sleep(5);
-        count_time ++;
+    unique_lock <mutex>lk(m);
+    bool result= condVar.wait_for(lk,chrono::seconds(5), [&]{return !isEmpty();});  
+    if(result){
+        T temp=queue[head];
+        //shift all queue
+        for(int i=0;i <= tail; i++){
+            T elem=queue[i+1];
+            queue[i]=elem;
+        }
+        tail --;
+        cout<< "\t\t\t\tPop()->" << temp << "\n";
+        printQueue();
+        lk.unlock();
+        condVar.notify_one();
+        return temp;
     }
-    pthread_mutex_lock(&mutex);
-    T temp=queue[head];
-    //shift all queue
-    for(int i=0;i <= tail; i++){
-        T elem=queue[i+1];
-        queue[i]=elem;
-    }
-    tail --;
-    cout<< "\t\t\t\tPop()->" << temp << "\n";
-    printQueue();
-    pthread_mutex_unlock(&mutex);
-    return temp;
+    else return false;
 }
 
 template<class T>
 void Queue<T>::Push( T element){
     
-    while(isFull()){
-        sleep(5);
-    }
-    pthread_mutex_lock(&mutex);
-    cout<< "Push(" << element << ")\n";
-    queue[tail++]=element;
-    printQueue();
-    pthread_mutex_unlock(&mutex);            
+    unique_lock <mutex>lk(m);
+    bool result=condVar.wait_for(lk,chrono::seconds(5),[&]{return !isFull();});
+    if(result){
+
+        cout<< "Push(" << element << ")\n";
+        queue[tail++]=element;
+        printQueue();
+        lk.unlock();
+        condVar.notify_one();
+    }else return;
 }
 template<class T>
 void Queue<T>:: printQueue(){
@@ -83,5 +81,3 @@ bool Queue<T>::isFull(){
     if(tail == size) return true;
     else return false;
 }
-
-

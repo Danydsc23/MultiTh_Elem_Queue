@@ -14,7 +14,8 @@ using namespace qq;
 
 Queue<int> q(2); //element thread safe queue 
 void *readThread(void *args ){
-        
+    (void)args;
+
     for(int i=1;i<=5;i++){
         q.Pop();
     }
@@ -23,6 +24,7 @@ void *readThread(void *args ){
 }
 
 void *writeThread(void *args){
+    (void)args;
 
         for(int i=1;i<=5;i++){
             q.Push(i);

@@ -1,0 +1,27 @@
+\hypertarget{Queue_8cpp}{}\doxysection{Queue.\+cpp File Reference}
+\label{Queue_8cpp}\index{Queue.cpp@{Queue.cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$pthread.\+h$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+{\ttfamily \#include $<$condition\+\_\+variable$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Queue.\+h\char`\"{}}\newline
+Include dependency graph for Queue.\+cpp\+:
+% FIG 0
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Dany Costa (\href{mailto:dany98costa23@gmail.com}{\texttt{ dany98costa23@gmail.\+com}}) 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+1 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/01-\/09
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
